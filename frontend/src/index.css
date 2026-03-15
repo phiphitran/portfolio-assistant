@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface: #0b0d14;
+  --color-card: #111827;
+  --color-border: #1f2937;
+}
+
+body {
+  background-color: #0b0d14;
+  color: #f9fafb;
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Recharts overrides for dark mode */
+.recharts-cartesian-grid line {
+  stroke: #1f2937;
+}
+.recharts-text {
+  fill: #9ca3af;
+}
+.recharts-polar-angle-axis-tick-value {
+  fill: #9ca3af;
+}
