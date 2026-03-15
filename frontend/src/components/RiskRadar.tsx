@@ -31,57 +31,57 @@ interface DimensionMeta {
 
 const DIMENSIONS: Record<keyof RiskRadarData, DimensionMeta> = {
   tech_exposure: {
-    label: 'Tech Exposure',
+    label: 'Teknikexponering',
     shortLabel: 'Tech',
-    description: 'How much of your portfolio is in technology companies (software, chips, internet, hardware).',
+    description: 'Hur stor del av din portfölj som ligger i teknikbolag (mjukvara, chips, internet, hårdvara).',
     interpret: (v) =>
-      v > 0.6 ? 'Very tech-heavy — strong upside potential but sector risk' :
-      v > 0.3 ? 'Moderate tech tilt — common in growth portfolios' :
-      'Low tech exposure',
+      v > 0.6 ? 'Mycket tekniktung — stor uppåtpotential men hög sektorrisk' :
+      v > 0.3 ? 'Måttlig tekniktyngd — vanligt i tillväxtportföljer' :
+      'Låg teknikexponering',
     riskLevel: (v) => v > 0.6 ? 'high' : v > 0.3 ? 'medium' : 'low',
     higherIsBetter: false,
   },
   us_exposure: {
-    label: 'US Exposure',
-    shortLabel: 'US',
-    description: 'Percentage of your portfolio invested in US-based companies. High concentration reduces global diversification.',
+    label: 'USA-exponering',
+    shortLabel: 'USA',
+    description: 'Andel av portföljen i USA-baserade bolag. Hög koncentration minskar den globala diversifieringen.',
     interpret: (v) =>
-      v > 0.8 ? 'Almost entirely in the US — limited international exposure' :
-      v > 0.5 ? 'Mostly US-based with some international' :
-      'Geographically diversified',
+      v > 0.8 ? 'Nästan helt USA-fokuserad — begränsad internationell exponering' :
+      v > 0.5 ? 'Mestadels USA-baserad med viss internationell spridning' :
+      'Geografiskt diversifierad',
     riskLevel: (v) => v > 0.8 ? 'high' : v > 0.5 ? 'medium' : 'low',
     higherIsBetter: false,
   },
   concentration: {
-    label: 'Concentration',
-    shortLabel: 'Concentration',
-    description: 'How dominant your single largest holding is. A high value means one stock can make or break your portfolio.',
+    label: 'Koncentration',
+    shortLabel: 'Konc.',
+    description: 'Hur dominant ditt enskilt största innehav är. Ett högt värde innebär att en aktie kan avgöra portföljens utveckling.',
     interpret: (v) =>
-      v > 0.4 ? 'High — one stock carries outsized influence' :
-      v > 0.25 ? 'Moderate — top holding has significant weight' :
-      'Well distributed — no single stock dominates',
+      v > 0.4 ? 'Hög — en aktie har oproportionerligt stor påverkan' :
+      v > 0.25 ? 'Måttlig — det största innehavet har betydande vikt' :
+      'Välfördelad — ingen enskild aktie dominerar',
     riskLevel: (v) => v > 0.4 ? 'high' : v > 0.25 ? 'medium' : 'low',
     higherIsBetter: false,
   },
   sector_diversity: {
-    label: 'Sector Diversity',
-    shortLabel: 'Diversity',
-    description: 'How spread your portfolio is across different industries. Higher is better — it means you\'re not dependent on any one sector.',
+    label: 'Sektordiversifiering',
+    shortLabel: 'Mångfald',
+    description: 'Hur spridd portföljen är över olika branscher. Högre är bättre — det innebär att du inte är beroende av en enda sektor.',
     interpret: (v) =>
-      v > 0.7 ? 'Highly diversified across multiple sectors' :
-      v > 0.4 ? 'Moderate — a few sectors dominate' :
-      'Low — heavily concentrated in one or two sectors',
+      v > 0.7 ? 'Starkt diversifierad över flera sektorer' :
+      v > 0.4 ? 'Måttlig — ett fåtal sektorer dominerar' :
+      'Låg — kraftigt koncentrerad till en eller två sektorer',
     riskLevel: (v) => v < 0.4 ? 'high' : v < 0.7 ? 'medium' : 'low',
     higherIsBetter: true,
   },
   volatility: {
-    label: 'Volatility',
-    shortLabel: 'Volatility',
-    description: 'How much your portfolio value has historically swung up and down, based on 3 years of daily price data.',
+    label: 'Volatilitet',
+    shortLabel: 'Volatilitet',
+    description: 'Hur mycket portföljvärdet historiskt har svängt upp och ned, baserat på tre års daglig prisdata.',
     interpret: (v) =>
-      v > 0.7 ? 'High — expect large price swings; higher risk and reward' :
-      v > 0.4 ? 'Moderate — typical of a growth-oriented portfolio' :
-      'Low — relatively stable price movements',
+      v > 0.7 ? 'Hög — förvänta dig stora prisrörelser; högre risk och potential' :
+      v > 0.4 ? 'Måttlig — typisk för en tillväxtinriktad portfölj' :
+      'Låg — relativt stabila prisrörelser',
     riskLevel: (v) => v > 0.7 ? 'high' : v > 0.4 ? 'medium' : 'low',
     higherIsBetter: false,
   },
@@ -93,7 +93,7 @@ const RISK_STYLE: Record<RiskLevel, { text: string; bg: string; dot: string; bor
   high:   { text: 'text-red-400',     bg: 'bg-red-400/10',     dot: 'bg-red-400',     border: 'border-red-400/20'     },
 }
 
-const RISK_LABEL: Record<RiskLevel, string> = { low: 'Low', medium: 'Moderate', high: 'High' }
+const RISK_LABEL: Record<RiskLevel, string> = { low: 'Låg', medium: 'Måttlig', high: 'Hög' }
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
@@ -161,16 +161,16 @@ export function RiskRadar({ radar, exposures, concentration }: Props) {
 
   return (
     <div className="bg-zinc-900/80 border border-white/[0.08] rounded-xl p-6 mb-4">
-      <h2 className="text-lg font-semibold text-white mb-1">Risk Radar</h2>
+      <h2 className="text-lg font-semibold text-white mb-1">Riskradar</h2>
       <p className="text-zinc-500 text-xs mb-5">
-        Five dimensions of portfolio risk — each axis runs 0% (center) to 100% (edge).
-        A larger shaded area means higher exposure on that dimension.
-        Hover any axis label for details.
+        Fem riskdimensioner — varje axel går 0% (mitten) till 100% (kanten).
+        En större skuggad yta betyder högre exponering på den dimensionen.
+        Hovra över axeletiketterna för detaljer.
       </p>
 
       {!radar && (
         <div className="h-64 flex items-center justify-center text-zinc-600 text-sm italic">
-          Run "Analyze Portfolio" to see risk breakdown.
+          Kör "Analysera" för att se riskprofilen.
         </div>
       )}
 
@@ -181,11 +181,11 @@ export function RiskRadar({ radar, exposures, concentration }: Props) {
             <div className="flex items-start gap-3 bg-red-400/5 border border-red-400/20 rounded-lg px-4 py-3">
               <span className="text-red-400 mt-0.5 shrink-0 text-sm">⚠</span>
               <div>
-                <div className="text-red-400 text-xs font-semibold mb-0.5">Elevated risk detected</div>
+                <div className="text-red-400 text-xs font-semibold mb-0.5">Förhöjd risk identifierad</div>
                 <div className="text-zinc-400 text-xs leading-relaxed">
                   <span className="text-zinc-300">{highRiskDims.join(', ')}</span>
-                  {highRiskDims.length === 1 ? ' is' : ' are'} in the high range.
-                  See the breakdown below for what this means and how to interpret it.
+                  {' '}är i det höga spannet.
+                  Se fördelningen nedan för vad detta innebär och hur du tolkar det.
                 </div>
               </div>
             </div>
@@ -223,13 +223,13 @@ export function RiskRadar({ radar, exposures, concentration }: Props) {
               {exposures && (
                 <>
                   <StatCard
-                    label="Sector breakdown"
+                    label="Sektorfördelning"
                     items={Object.entries(exposures.sector_exposure)
                       .sort((a, b) => b[1] - a[1])
                       .map(([k, v]) => ({ label: k, value: v }))}
                   />
                   <StatCard
-                    label="Country breakdown"
+                    label="Landfördelning"
                     items={Object.entries(exposures.country_exposure)
                       .sort((a, b) => b[1] - a[1])
                       .map(([k, v]) => ({ label: k, value: v }))}
@@ -238,12 +238,12 @@ export function RiskRadar({ radar, exposures, concentration }: Props) {
               )}
               {concentration !== null && (
                 <div className="bg-zinc-800/60 rounded-lg px-3 py-2">
-                  <div className="text-zinc-500 text-xs mb-1">Largest single position</div>
+                  <div className="text-zinc-500 text-xs mb-1">Största enskilda innehav</div>
                   <div className={`text-sm font-semibold ${concentration >= 0.4 ? 'text-red-400' : 'text-white'}`}>
                     {(concentration * 100).toFixed(0)}%
-                    {concentration >= 0.4 && <span className="text-xs font-normal text-red-400 ml-1">High</span>}
+                    {concentration >= 0.4 && <span className="text-xs font-normal text-red-400 ml-1">Hög</span>}
                   </div>
-                  <div className="text-zinc-600 text-xs mt-0.5">of portfolio in one stock</div>
+                  <div className="text-zinc-600 text-xs mt-0.5">av portföljen i en aktie</div>
                 </div>
               )}
             </div>
@@ -252,7 +252,7 @@ export function RiskRadar({ radar, exposures, concentration }: Props) {
           {/* Dimension legend */}
           <div>
             <div className="text-xs text-zinc-500 uppercase tracking-wider font-medium mb-3">
-              What each dimension means
+              Vad varje dimension innebär
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {(Object.entries(DIMENSIONS) as [keyof RiskRadarData, DimensionMeta][]).map(([key, meta]) => {
@@ -268,7 +268,7 @@ export function RiskRadar({ radar, exposures, concentration }: Props) {
                       <div className="flex items-center gap-1.5">
                         <span className="text-xs font-semibold text-zinc-200">{meta.label}</span>
                         {meta.higherIsBetter && (
-                          <span className="text-zinc-600 text-xs">↑ better</span>
+                          <span className="text-zinc-600 text-xs">↑ bättre</span>
                         )}
                       </div>
                       <div className="flex items-center gap-2 shrink-0">
@@ -289,13 +289,13 @@ export function RiskRadar({ radar, exposures, concentration }: Props) {
           {/* Reading guide */}
           <div className="border-t border-white/[0.06] pt-4">
             <div className="text-xs text-zinc-500 uppercase tracking-wider font-medium mb-2">
-              How to read this chart
+              Så läser du grafen
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
-                { symbol: '●', color: 'text-violet-400', label: 'Shaded area', tip: 'The purple polygon shows your current risk profile. A larger shape means higher exposure on that axis.' },
-                { symbol: '↑', color: 'text-zinc-400', label: 'Diversity axis', tip: 'This is the only axis where a higher score is good — more diversity means less sector risk.' },
-                { symbol: '⚠', color: 'text-amber-400', label: 'Risk badges', tip: 'Each dimension is rated Low / Moderate / High. Aim to understand any "High" rating before investing more.' },
+                { symbol: '●', color: 'text-violet-400', label: 'Skuggat område', tip: 'Den lila polygonen visar din aktuella riskprofil. En större yta innebär högre exponering på den axeln.' },
+                { symbol: '↑', color: 'text-zinc-400', label: 'Diversifieringsaxeln (Mångfald)', tip: 'Axeln märkt "Mångfald" är den enda där ett högt värde är bra — mer mångfald innebär lägre sektorrisk.' },
+                { symbol: '⚠', color: 'text-amber-400', label: 'Riskmarkeringar', tip: 'Varje dimension bedöms som Låg / Måttlig / Hög. Förstå innebörden av "Hög" innan du investerar mer.' },
               ].map((g) => (
                 <div key={g.label} className="flex gap-2.5">
                   <span className={`${g.color} shrink-0 mt-0.5 text-sm`}>{g.symbol}</span>

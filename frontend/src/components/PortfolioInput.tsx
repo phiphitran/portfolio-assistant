@@ -41,12 +41,12 @@ export function PortfolioInput({
 
   return (
     <div className="bg-zinc-900/80 border border-white/[0.08] rounded-xl p-6 mb-4">
-      <h2 className="text-lg font-semibold text-white mb-4">Portfolio</h2>
+      <h2 className="text-lg font-semibold text-white mb-4">Portfölj</h2>
 
       {/* Table header */}
       <div className="grid grid-cols-[1fr_120px_40px] gap-2 mb-2 px-1">
         <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">Ticker</span>
-        <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">Weight %</span>
+        <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">Vikt %</span>
         <span />
       </div>
 
@@ -102,7 +102,7 @@ export function PortfolioInput({
           onClick={addRow}
           className="px-4 py-2 rounded-lg text-sm font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-300 transition-colors border border-white/[0.08]"
         >
-          + Add Asset
+          + Lägg till
         </button>
 
         <button
@@ -111,7 +111,7 @@ export function PortfolioInput({
           className="px-4 py-2 rounded-lg text-sm font-medium bg-violet-600 hover:bg-violet-500 text-white transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2"
         >
           {loadingAnalyze && <Spinner />}
-          Analyze Portfolio
+          Analysera
         </button>
 
         <button
@@ -120,13 +120,13 @@ export function PortfolioInput({
           className="px-4 py-2 rounded-lg text-sm font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-white/[0.08] transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2"
         >
           {loadingExplain && <Spinner />}
-          ✦ Explain Portfolio
+          ✦ Förklara
         </button>
       </div>
 
       {!isValid && portfolio.length > 0 && (
         <p className="text-xs text-amber-500 mt-3">
-          Weights must sum to exactly 100% before analyzing.
+          Vikterna måste summera till 100%.
         </p>
       )}
     </div>

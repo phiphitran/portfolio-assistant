@@ -70,7 +70,7 @@ export function AIInsights({ text, loading, error }: Props) {
     <div className="bg-zinc-900/80 border border-white/[0.08] rounded-xl p-6 mb-4">
       <div className="flex items-center gap-2 mb-4">
         <span className="text-violet-400 text-lg">✦</span>
-        <h2 className="text-lg font-semibold text-white">AI Insights</h2>
+        <h2 className="text-lg font-semibold text-white">AI-insikter</h2>
         {loading && (
           <svg className="w-4 h-4 animate-spin text-violet-400 ml-1" viewBox="0 0 24 24" fill="none">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
@@ -87,7 +87,7 @@ export function AIInsights({ text, loading, error }: Props) {
 
       {!loading && !hasContent && !error && (
         <p className="text-zinc-600 text-sm italic">
-          Click "Explain Portfolio" to generate an AI analysis of your holdings.
+          Klicka på "Förklara" för att generera en AI-analys av dina innehav.
         </p>
       )}
 
@@ -120,9 +120,9 @@ export function AIInsights({ text, loading, error }: Props) {
               <div className="flex items-center gap-2 mb-3">
                 <span className="text-emerald-400 text-sm">◆</span>
                 <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">
-                  Best Practices
+                  Att tänka på
                 </span>
-                <span className="text-xs text-zinc-600">— tailored to your portfolio</span>
+                <span className="text-xs text-zinc-600">— för riskbalans, inte avkastningsoptimering</span>
               </div>
               <BulletList lines={bestPracticeBullets} icon="practice" />
             </div>

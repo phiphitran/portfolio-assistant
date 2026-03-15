@@ -54,7 +54,7 @@ export default function App() {
       setWhatifResult(null)
       setSliderWeights([...portfolio])
     } catch (e) {
-      setAnalyzeError(e instanceof Error ? e.message : 'Analysis failed')
+      setAnalyzeError(e instanceof Error ? e.message : 'Analys misslyckades')
     } finally {
       setLoading((l) => ({ ...l, analyze: false }))
     }
@@ -68,7 +68,7 @@ export default function App() {
       const result = await explainPortfolio(portfolio)
       setExplanation(result.explanation)
     } catch (e) {
-      setExplainError(e instanceof Error ? e.message : 'Explanation failed')
+      setExplainError(e instanceof Error ? e.message : 'Förklaring misslyckades')
     } finally {
       setLoading((l) => ({ ...l, explain: false }))
     }

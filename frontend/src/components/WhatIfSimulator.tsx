@@ -100,14 +100,14 @@ export function WhatIfSimulator({
 
   return (
     <div className="bg-zinc-900/80 border border-white/[0.08] rounded-xl p-6 mb-4">
-      <h2 className="text-lg font-semibold text-white mb-1">What-If Simulator</h2>
+      <h2 className="text-lg font-semibold text-white mb-1">Scenariosimulator</h2>
       <p className="text-zinc-500 text-xs mb-5">
-        Adjust weights and compare against original allocation
+        Justera vikter och jämför mot ursprunglig fördelning
       </p>
 
       {!hasData && (
         <div className="h-40 flex items-center justify-center text-zinc-600 text-sm italic">
-          Run "Analyze Portfolio" first to enable the simulator.
+          Kör "Analysera" för att aktivera simulatorn.
         </div>
       )}
 
@@ -115,7 +115,7 @@ export function WhatIfSimulator({
         <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-6">
           {/* Sliders */}
           <div className="flex flex-col gap-4">
-            <div className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Adjust weights</div>
+            <div className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Justera vikter</div>
             {sliderWeights.map((w) => (
               <div key={w.ticker}>
                 <div className="flex justify-between mb-1.5">
@@ -134,7 +134,7 @@ export function WhatIfSimulator({
                 <div className="flex justify-between text-xs text-zinc-700 mt-0.5">
                   <span>0</span>
                   <span>
-                    Original:{' '}
+                    Ursprunglig:{' '}
                     {portfolio.find((p) => p.ticker === w.ticker)?.weight ?? 0}%
                   </span>
                 </div>
@@ -143,7 +143,7 @@ export function WhatIfSimulator({
 
             {/* Total indicator */}
             <div className={`text-xs font-mono mt-1 ${isValid ? 'text-green-400' : 'text-amber-400'}`}>
-              Total: {total}% / 100%
+              Totalt: {total}% / 100%
             </div>
 
             <button
@@ -157,14 +157,14 @@ export function WhatIfSimulator({
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
                 </svg>
               )}
-              Compare
+              Jämför
             </button>
 
             {/* Return summary */}
             {whatifResult && origGain !== null && newGain !== null && (
               <div className="space-y-2 mt-1">
-                <ReturnBadge label="Original" gain={origGain} color="#52525b" />
-                <ReturnBadge label="New" gain={newGain} color="#7c3aed" />
+                <ReturnBadge label="Ursprunglig" gain={origGain} color="#52525b" />
+                <ReturnBadge label="Ny" gain={newGain} color="#7c3aed" />
               </div>
             )}
           </div>
@@ -172,7 +172,7 @@ export function WhatIfSimulator({
           {/* Chart */}
           <div>
             <div className="text-xs text-zinc-500 uppercase tracking-wider font-medium mb-3">
-              {whatifResult ? 'Performance comparison' : '3-year baseline'}
+              {whatifResult ? 'Prestandajämförelse' : '3-årig baslinje'}
             </div>
             <ResponsiveContainer width="100%" height={280}>
               <LineChart data={chartData}>
@@ -202,7 +202,7 @@ export function WhatIfSimulator({
                   strokeDasharray={whatifResult ? '5 3' : undefined}
                   dot={false}
                   activeDot={{ r: 3 }}
-                  name="original"
+                  name="ursprunglig"
                 />
                 {whatifResult && (
                   <Line
@@ -212,7 +212,7 @@ export function WhatIfSimulator({
                     strokeWidth={2}
                     dot={false}
                     activeDot={{ r: 4 }}
-                    name="new"
+                    name="ny"
                   />
                 )}
               </LineChart>

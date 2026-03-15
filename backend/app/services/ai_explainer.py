@@ -85,7 +85,9 @@ Examples of the kind of advice to give (adapt to the actual data):
 - If a single sector dominates, suggest specific diversification moves naming the dominant tickers
 - If geographic exposure is concentrated, suggest a concrete way to add international coverage
 - If a single stock is >30%, suggest a target weight to trim it to and what to do with the proceeds
-Be direct and concrete, not generic."""
+Be direct and concrete, not generic.
+
+Svara helt på svenska."""
 
     client = _get_client()
     response = client.chat.completions.create(

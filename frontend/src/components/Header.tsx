@@ -15,7 +15,7 @@ export function Header() {
         </div>
 
         <div className="hidden md:flex items-center gap-7 text-sm text-zinc-500">
-          <span className="text-zinc-300 font-medium">Portfolio</span>
+          <span className="text-zinc-300 font-medium">Portfölj</span>
           <span className="hover:text-zinc-300 transition-colors cursor-default">Risk</span>
           <span className="hover:text-zinc-300 transition-colors cursor-default">Simulator</span>
         </div>
@@ -31,7 +31,7 @@ export function Header() {
           Portfolio Copilot
         </h1>
         <p className="text-zinc-400 text-sm">
-          Understand and optimize your portfolio with AI
+          Förstå och optimera din portfölj med AI
         </p>
       </div>
     </header>
