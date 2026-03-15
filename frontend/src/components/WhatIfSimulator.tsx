@@ -58,8 +58,8 @@ function formatDate(d: string) {
 function CustomTooltip({ active, payload, label }: RechartsTooltipProps<number, string>) {
   if (!active || !payload?.length) return null
   return (
-    <div className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-xs">
-      <div className="text-gray-400 mb-1">{label}</div>
+    <div className="bg-zinc-800 border border-white/[0.08] rounded-lg px-3 py-2 text-xs shadow-xl">
+      <div className="text-zinc-400 mb-1">{label}</div>
       {payload.map((p, i) => (
         <div key={i} className="flex justify-between gap-4" style={{ color: p.color }}>
           <span className="capitalize">{p.name}</span>
@@ -99,14 +99,14 @@ export function WhatIfSimulator({
   const newGain = newFinal !== undefined ? ((newFinal - 1) * 100).toFixed(1) : null
 
   return (
-    <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 mb-4">
+    <div className="bg-zinc-900/80 border border-white/[0.08] rounded-xl p-6 mb-4">
       <h2 className="text-lg font-semibold text-white mb-1">What-If Simulator</h2>
-      <p className="text-gray-500 text-xs mb-5">
+      <p className="text-zinc-500 text-xs mb-5">
         Adjust weights and compare against original allocation
       </p>
 
       {!hasData && (
-        <div className="h-40 flex items-center justify-center text-gray-600 text-sm italic">
+        <div className="h-40 flex items-center justify-center text-zinc-600 text-sm italic">
           Run "Analyze Portfolio" first to enable the simulator.
         </div>
       )}
@@ -115,12 +115,12 @@ export function WhatIfSimulator({
         <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-6">
           {/* Sliders */}
           <div className="flex flex-col gap-4">
-            <div className="text-xs text-gray-500 uppercase tracking-wider font-medium">Adjust weights</div>
+            <div className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Adjust weights</div>
             {sliderWeights.map((w) => (
               <div key={w.ticker}>
                 <div className="flex justify-between mb-1.5">
-                  <span className="text-sm font-mono text-gray-300">{w.ticker}</span>
-                  <span className="text-sm text-blue-400 font-mono tabular-nums">{w.weight}%</span>
+                  <span className="text-sm font-mono text-zinc-300">{w.ticker}</span>
+                  <span className="text-sm text-violet-400 font-mono tabular-nums">{w.weight}%</span>
                 </div>
                 <input
                   type="range"
@@ -129,9 +129,9 @@ export function WhatIfSimulator({
                   step={1}
                   value={w.weight}
                   onChange={(e) => updateWeight(w.ticker, Number(e.target.value))}
-                  className="w-full accent-blue-500 h-1.5 rounded-full cursor-pointer"
+                  className="w-full h-1.5 rounded-full cursor-pointer"
                 />
-                <div className="flex justify-between text-xs text-gray-700 mt-0.5">
+                <div className="flex justify-between text-xs text-zinc-700 mt-0.5">
                   <span>0</span>
                   <span>
                     Original:{' '}
@@ -149,7 +149,7 @@ export function WhatIfSimulator({
             <button
               onClick={() => onRunWhatif(sliderWeights)}
               disabled={!isValid || loading}
-              className="w-full py-2 rounded-lg text-sm font-medium bg-blue-600 hover:bg-blue-500 text-white transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full py-2 rounded-lg text-sm font-medium bg-violet-600 hover:bg-violet-500 text-white transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {loading && (
                 <svg className="w-3.5 h-3.5 animate-spin" viewBox="0 0 24 24" fill="none">
@@ -163,41 +163,41 @@ export function WhatIfSimulator({
             {/* Return summary */}
             {whatifResult && origGain !== null && newGain !== null && (
               <div className="space-y-2 mt-1">
-                <ReturnBadge label="Original" gain={origGain} color="#6b7280" />
-                <ReturnBadge label="New" gain={newGain} color="#3b82f6" />
+                <ReturnBadge label="Original" gain={origGain} color="#52525b" />
+                <ReturnBadge label="New" gain={newGain} color="#7c3aed" />
               </div>
             )}
           </div>
 
           {/* Chart */}
           <div>
-            <div className="text-xs text-gray-500 uppercase tracking-wider font-medium mb-3">
+            <div className="text-xs text-zinc-500 uppercase tracking-wider font-medium mb-3">
               {whatifResult ? 'Performance comparison' : '3-year baseline'}
             </div>
             <ResponsiveContainer width="100%" height={280}>
               <LineChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#1c1c1e" />
                 <XAxis
                   dataKey="date"
                   tickFormatter={formatDate}
-                  tick={{ fill: '#6b7280', fontSize: 11 }}
+                  tick={{ fill: '#71717a', fontSize: 11 }}
                   interval="preserveStartEnd"
                 />
                 <YAxis
-                  tick={{ fill: '#6b7280', fontSize: 11 }}
+                  tick={{ fill: '#71717a', fontSize: 11 }}
                   tickFormatter={(v: number) => v.toFixed(2)}
                   width={50}
                 />
                 <Tooltip content={CustomTooltip} />
                 {whatifResult && (
                   <Legend
-                    wrapperStyle={{ fontSize: 12, color: '#9ca3af' }}
+                    wrapperStyle={{ fontSize: 12, color: '#a1a1aa' }}
                   />
                 )}
                 <Line
                   type="monotone"
                   dataKey="original"
-                  stroke="#6b7280"
+                  stroke="#52525b"
                   strokeWidth={1.5}
                   strokeDasharray={whatifResult ? '5 3' : undefined}
                   dot={false}
@@ -208,7 +208,7 @@ export function WhatIfSimulator({
                   <Line
                     type="monotone"
                     dataKey="new"
-                    stroke="#3b82f6"
+                    stroke="#7c3aed"
                     strokeWidth={2}
                     dot={false}
                     activeDot={{ r: 4 }}
@@ -227,10 +227,10 @@ export function WhatIfSimulator({
 function ReturnBadge({ label, gain, color }: { label: string; gain: string; color: string }) {
   const isPositive = parseFloat(gain) >= 0
   return (
-    <div className="flex items-center justify-between bg-gray-800/60 rounded-lg px-3 py-1.5">
+    <div className="flex items-center justify-between bg-zinc-800/60 rounded-lg px-3 py-1.5">
       <div className="flex items-center gap-2">
         <div className="w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
-        <span className="text-xs text-gray-400">{label}</span>
+        <span className="text-xs text-zinc-400">{label}</span>
       </div>
       <span className={`text-xs font-mono font-medium ${isPositive ? 'text-green-400' : 'text-red-400'}`}>
         {isPositive ? '+' : ''}{gain}%

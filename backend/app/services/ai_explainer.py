@@ -69,19 +69,29 @@ Country breakdown (total allocation — contributing tickers):
 
 Concentration risk: largest single position is {_format_pct(concentration)}
 
-Explain:
-1. Main risks
-2. Diversification level
-3. Key insight about concentration
-
 When mentioning a sector or country, always name the specific tickers that contribute to it.
-Output exactly 3–6 bullet points. Each bullet should start with •. Be concise and actionable."""
+
+Output exactly two sections separated by the line ---
+
+SECTION 1 — Portfolio Analysis (3–5 bullet points starting with •):
+Cover: main risks, diversification level, key concentration insight.
+
+---
+
+SECTION 2 — Best Practices (2–3 bullet points starting with ✓):
+Give specific, actionable recommendations tailored to THIS portfolio's actual numbers.
+Each recommendation must reference the exact tickers or percentages from this portfolio.
+Examples of the kind of advice to give (adapt to the actual data):
+- If a single sector dominates, suggest specific diversification moves naming the dominant tickers
+- If geographic exposure is concentrated, suggest a concrete way to add international coverage
+- If a single stock is >30%, suggest a target weight to trim it to and what to do with the proceeds
+Be direct and concrete, not generic."""
 
     client = _get_client()
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[{"role": "user", "content": prompt}],
-        max_tokens=400,
+        max_tokens=600,
         temperature=0.4,
     )
 

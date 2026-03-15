@@ -1,25 +1,29 @@
 @import "tailwindcss";
 
 @theme {
-  --color-surface: #0b0d14;
-  --color-card: #111827;
-  --color-border: #1f2937;
+  --color-surface: #000000;
+  --color-card: #0f0f11;
+  --color-border: rgba(255,255,255,0.08);
 }
 
 body {
-  background-color: #0b0d14;
+  background-color: #000;
   color: #f9fafb;
-  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+input[type="range"] {
+  accent-color: #7c3aed;
 }
 
 /* Recharts overrides for dark mode */
 .recharts-cartesian-grid line {
-  stroke: #1f2937;
+  stroke: #1c1c1e;
 }
 .recharts-text {
-  fill: #9ca3af;
+  fill: #71717a;
 }
 .recharts-polar-angle-axis-tick-value {
-  fill: #9ca3af;
+  fill: #a1a1aa;
 }

@@ -113,27 +113,27 @@ function CustomTooltip({ active, payload, label }: RechartsTooltipProps<number, 
   const dimEntry = Object.entries(DIMENSIONS).find(([, d]) => d.shortLabel === label)
   const meta = dimEntry?.[1]
   return (
-    <div className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5 text-xs max-w-[200px] shadow-xl">
+    <div className="bg-zinc-800 border border-white/[0.08] rounded-lg px-3 py-2.5 text-xs max-w-[200px] shadow-xl">
       <div className="font-semibold text-white mb-1">{meta?.label ?? label}</div>
-      <div className="text-blue-400 font-mono mb-1.5">{(value * 100).toFixed(0)}%</div>
-      {meta && <div className="text-gray-400 leading-relaxed">{meta.interpret(value)}</div>}
+      <div className="text-violet-400 font-mono mb-1.5">{(value * 100).toFixed(0)}%</div>
+      {meta && <div className="text-zinc-400 leading-relaxed">{meta.interpret(value)}</div>}
     </div>
   )
 }
 
 function StatCard({ label, items }: { label: string; items: { label: string; value: number }[] }) {
   return (
-    <div className="bg-gray-800/60 rounded-lg px-3 py-2">
-      <div className="text-gray-500 text-xs mb-2">{label}</div>
+    <div className="bg-zinc-800/60 rounded-lg px-3 py-2">
+      <div className="text-zinc-500 text-xs mb-2">{label}</div>
       <div className="space-y-1">
         {items.slice(0, 4).map(({ label: l, value: v }) => (
           <div key={l} className="flex items-center justify-between gap-3">
-            <span className="text-xs text-gray-400 capitalize">{l}</span>
+            <span className="text-xs text-zinc-400 capitalize">{l}</span>
             <div className="flex items-center gap-1.5">
-              <div className="w-12 h-1 bg-gray-700 rounded-full overflow-hidden">
-                <div className="h-full bg-blue-500 rounded-full" style={{ width: `${v * 100}%` }} />
+              <div className="w-12 h-1 bg-zinc-700 rounded-full overflow-hidden">
+                <div className="h-full bg-violet-500 rounded-full" style={{ width: `${v * 100}%` }} />
               </div>
-              <span className="text-xs text-gray-300 tabular-nums">{(v * 100).toFixed(0)}%</span>
+              <span className="text-xs text-zinc-300 tabular-nums">{(v * 100).toFixed(0)}%</span>
             </div>
           </div>
         ))}
@@ -160,16 +160,16 @@ export function RiskRadar({ radar, exposures, concentration }: Props) {
     : []
 
   return (
-    <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 mb-4">
+    <div className="bg-zinc-900/80 border border-white/[0.08] rounded-xl p-6 mb-4">
       <h2 className="text-lg font-semibold text-white mb-1">Risk Radar</h2>
-      <p className="text-gray-500 text-xs mb-5">
+      <p className="text-zinc-500 text-xs mb-5">
         Five dimensions of portfolio risk — each axis runs 0% (center) to 100% (edge).
         A larger shaded area means higher exposure on that dimension.
         Hover any axis label for details.
       </p>
 
       {!radar && (
-        <div className="h-64 flex items-center justify-center text-gray-600 text-sm italic">
+        <div className="h-64 flex items-center justify-center text-zinc-600 text-sm italic">
           Run "Analyze Portfolio" to see risk breakdown.
         </div>
       )}
@@ -182,8 +182,8 @@ export function RiskRadar({ radar, exposures, concentration }: Props) {
               <span className="text-red-400 mt-0.5 shrink-0 text-sm">⚠</span>
               <div>
                 <div className="text-red-400 text-xs font-semibold mb-0.5">Elevated risk detected</div>
-                <div className="text-gray-400 text-xs leading-relaxed">
-                  <span className="text-gray-300">{highRiskDims.join(', ')}</span>
+                <div className="text-zinc-400 text-xs leading-relaxed">
+                  <span className="text-zinc-300">{highRiskDims.join(', ')}</span>
                   {highRiskDims.length === 1 ? ' is' : ' are'} in the high range.
                   See the breakdown below for what this means and how to interpret it.
                 </div>
@@ -196,21 +196,21 @@ export function RiskRadar({ radar, exposures, concentration }: Props) {
             <div>
               <ResponsiveContainer width="100%" height={280}>
                 <RadarChart data={radarData} cx="50%" cy="50%" outerRadius="70%">
-                  <PolarGrid stroke="#1f2937" />
+                  <PolarGrid stroke="#1c1c1e" />
                   <PolarAngleAxis
                     dataKey="subject"
-                    tick={{ fill: '#9ca3af', fontSize: 12 }}
+                    tick={{ fill: '#a1a1aa', fontSize: 12 }}
                   />
                   <PolarRadiusAxis
                     angle={90}
                     domain={[0, 100]}
-                    tick={{ fill: '#6b7280', fontSize: 10 }}
+                    tick={{ fill: '#71717a', fontSize: 10 }}
                     tickCount={4}
                   />
                   <Radar
                     dataKey="value"
-                    stroke="#3b82f6"
-                    fill="#3b82f6"
+                    stroke="#7c3aed"
+                    fill="#7c3aed"
                     fillOpacity={0.2}
                     strokeWidth={2}
                   />
@@ -237,13 +237,13 @@ export function RiskRadar({ radar, exposures, concentration }: Props) {
                 </>
               )}
               {concentration !== null && (
-                <div className="bg-gray-800/60 rounded-lg px-3 py-2">
-                  <div className="text-gray-500 text-xs mb-1">Largest single position</div>
+                <div className="bg-zinc-800/60 rounded-lg px-3 py-2">
+                  <div className="text-zinc-500 text-xs mb-1">Largest single position</div>
                   <div className={`text-sm font-semibold ${concentration >= 0.4 ? 'text-red-400' : 'text-white'}`}>
                     {(concentration * 100).toFixed(0)}%
                     {concentration >= 0.4 && <span className="text-xs font-normal text-red-400 ml-1">High</span>}
                   </div>
-                  <div className="text-gray-600 text-xs mt-0.5">of portfolio in one stock</div>
+                  <div className="text-zinc-600 text-xs mt-0.5">of portfolio in one stock</div>
                 </div>
               )}
             </div>
@@ -251,7 +251,7 @@ export function RiskRadar({ radar, exposures, concentration }: Props) {
 
           {/* Dimension legend */}
           <div>
-            <div className="text-xs text-gray-500 uppercase tracking-wider font-medium mb-3">
+            <div className="text-xs text-zinc-500 uppercase tracking-wider font-medium mb-3">
               What each dimension means
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -262,23 +262,23 @@ export function RiskRadar({ radar, exposures, concentration }: Props) {
                 return (
                   <div
                     key={key}
-                    className={`rounded-lg px-3 py-2.5 border bg-gray-800/40 ${s.border}`}
+                    className={`rounded-lg px-3 py-2.5 border bg-zinc-800/40 ${s.border}`}
                   >
                     <div className="flex items-center justify-between gap-2 mb-1.5">
                       <div className="flex items-center gap-1.5">
-                        <span className="text-xs font-semibold text-gray-200">{meta.label}</span>
+                        <span className="text-xs font-semibold text-zinc-200">{meta.label}</span>
                         {meta.higherIsBetter && (
-                          <span className="text-gray-600 text-xs">↑ better</span>
+                          <span className="text-zinc-600 text-xs">↑ better</span>
                         )}
                       </div>
                       <div className="flex items-center gap-2 shrink-0">
-                        <span className="text-xs font-mono text-gray-400 tabular-nums">
+                        <span className="text-xs font-mono text-zinc-400 tabular-nums">
                           {(rawValue * 100).toFixed(0)}%
                         </span>
                         <RiskBadge level={level} />
                       </div>
                     </div>
-                    <p className="text-xs text-gray-500 leading-relaxed mb-1">{meta.description}</p>
+                    <p className="text-xs text-zinc-500 leading-relaxed mb-1">{meta.description}</p>
                     <p className={`text-xs font-medium ${s.text}`}>{meta.interpret(rawValue)}</p>
                   </div>
                 )
@@ -287,21 +287,21 @@ export function RiskRadar({ radar, exposures, concentration }: Props) {
           </div>
 
           {/* Reading guide */}
-          <div className="border-t border-gray-800 pt-4">
-            <div className="text-xs text-gray-500 uppercase tracking-wider font-medium mb-2">
+          <div className="border-t border-white/[0.06] pt-4">
+            <div className="text-xs text-zinc-500 uppercase tracking-wider font-medium mb-2">
               How to read this chart
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
-                { symbol: '●', color: 'text-blue-400', label: 'Shaded area', tip: 'The blue polygon shows your current risk profile. A larger shape means higher risk across that axis.' },
-                { symbol: '↑', color: 'text-gray-400', label: 'Diversity axis', tip: 'This is the only axis where a higher score is good — more diversity means less sector risk.' },
+                { symbol: '●', color: 'text-violet-400', label: 'Shaded area', tip: 'The purple polygon shows your current risk profile. A larger shape means higher exposure on that axis.' },
+                { symbol: '↑', color: 'text-zinc-400', label: 'Diversity axis', tip: 'This is the only axis where a higher score is good — more diversity means less sector risk.' },
                 { symbol: '⚠', color: 'text-amber-400', label: 'Risk badges', tip: 'Each dimension is rated Low / Moderate / High. Aim to understand any "High" rating before investing more.' },
               ].map((g) => (
                 <div key={g.label} className="flex gap-2.5">
                   <span className={`${g.color} shrink-0 mt-0.5 text-sm`}>{g.symbol}</span>
                   <div>
-                    <div className="text-xs font-medium text-gray-300 mb-0.5">{g.label}</div>
-                    <div className="text-xs text-gray-600 leading-relaxed">{g.tip}</div>
+                    <div className="text-xs font-medium text-zinc-300 mb-0.5">{g.label}</div>
+                    <div className="text-xs text-zinc-600 leading-relaxed">{g.tip}</div>
                   </div>
                 </div>
               ))}

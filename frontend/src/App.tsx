@@ -87,8 +87,13 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen px-4 py-10">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-black">
+      {/* Subtle purple radial glow */}
+      <div
+        className="pointer-events-none fixed inset-x-0 top-0 h-[500px] opacity-20"
+        style={{ background: 'radial-gradient(ellipse 80% 60% at 50% -10%, #7c3aed, transparent)' }}
+      />
+      <div className="relative max-w-4xl mx-auto px-4 py-10">
         <Header />
 
         {analyzeError && (
