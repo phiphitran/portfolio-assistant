@@ -28,7 +28,7 @@ export function Header() {
       {/* Hero */}
       <div>
         <h1 className="text-4xl font-bold text-white tracking-tight mb-2">
-          Portfolio Copilot
+          Portfolioassistenten
         </h1>
         <p className="text-zinc-400 text-sm">
           Förstå och optimera din portfölj med AI

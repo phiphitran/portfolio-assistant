@@ -18,10 +18,10 @@ import type {
 } from './types'
 
 const DEFAULT_PORTFOLIO: PortfolioItem[] = [
-  { ticker: 'NVDA', weight: 30 },
-  { ticker: 'TSLA', weight: 20 },
-  { ticker: 'INVESTOR', weight: 25 },
-  { ticker: 'ETF', weight: 25 },
+  { ticker: 'VT', weight: 40 },
+  { ticker: 'QQQ', weight: 25 },
+  { ticker: 'IWM', weight: 20 },
+  { ticker: 'VXUS', weight: 15 },
 ]
 
 export default function App() {

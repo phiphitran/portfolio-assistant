@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .routes.portfolio import router as portfolio_router
 
 app = FastAPI(
-    title="SAVR Portfolio Copilot",
+    title="Portfolioassistenten",
     description="AI-powered portfolio analysis, risk radar, and what-if simulation.",
     version="0.1.0",
 )
