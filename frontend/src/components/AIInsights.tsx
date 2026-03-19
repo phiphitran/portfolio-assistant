@@ -67,7 +67,7 @@ export function AIInsights({ text, loading, error }: Props) {
   const hasContent = analysisBullets.length > 0 || bestPracticeBullets.length > 0
 
   return (
-    <div className="bg-zinc-900/80 border border-white/[0.08] rounded-xl p-6 mb-4">
+    <div className="bg-zinc-900 rounded-2xl p-6 mb-4">
       <div className="flex items-center gap-2 mb-4">
         <span className="text-violet-400 text-lg">✦</span>
         <h2 className="text-lg font-semibold text-white">AI-insikter</h2>

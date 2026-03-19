@@ -74,7 +74,7 @@ When mentioning a sector or country, always name the specific tickers that contr
 Output exactly two sections separated by the line ---
 
 SECTION 1 — Portfolio Analysis (3–5 bullet points starting with •):
-Cover: main risks, diversification level, key concentration insight.
+Cover: main risks, diversification level, key concentration insight. Do not mention obvious facts like "the largest position is X%".
 
 ---
 

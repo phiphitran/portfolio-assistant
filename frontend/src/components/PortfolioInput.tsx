@@ -40,7 +40,7 @@ export function PortfolioInput({
   }
 
   return (
-    <div className="bg-zinc-900/80 border border-white/[0.08] rounded-xl p-6 mb-4">
+    <div className="bg-zinc-900 rounded-2xl p-6 mb-4">
       <h2 className="text-lg font-semibold text-white mb-4">Portfölj</h2>
 
       {/* Table header */}

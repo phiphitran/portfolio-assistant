@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Header } from './components/Header'
 import { PortfolioInput } from './components/PortfolioInput'
 import { AIInsights } from './components/AIInsights'
-import { RiskRadar } from './components/RiskRadar'
+import { ExposureCards } from './components/ExposureCards'
 import { WhatIfSimulator } from './components/WhatIfSimulator'
 import {
   analyzePortfolio,
@@ -88,12 +88,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-black">
-      {/* Subtle purple radial glow */}
-      <div
-        className="pointer-events-none fixed inset-x-0 top-0 h-[500px] opacity-20"
-        style={{ background: 'radial-gradient(ellipse 80% 60% at 50% -10%, #7c3aed, transparent)' }}
-      />
-      <div className="relative max-w-4xl mx-auto px-4 py-10">
+      <div className="max-w-4xl mx-auto px-4 py-8">
         <Header />
 
         {analyzeError && (
@@ -117,10 +112,9 @@ export default function App() {
           error={explainError}
         />
 
-        <RiskRadar
-          radar={analyzeResult?.risk_radar ?? null}
+        <ExposureCards
+          portfolio={portfolio}
           exposures={analyzeResult?.exposures ?? null}
-          concentration={analyzeResult?.concentration ?? null}
         />
 
         <WhatIfSimulator

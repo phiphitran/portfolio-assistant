@@ -74,15 +74,8 @@ def analyze_portfolio(request: PortfolioRequest) -> dict[str, Any]:
     sector_map = portfolio_analysis.load_sector_map()
 
     exposures = portfolio_analysis.compute_exposures(raw, sector_map)
-    concentration = portfolio_analysis.compute_concentration(raw)
-    volatility = portfolio_analysis.compute_volatility(raw)
-    radar = portfolio_analysis.build_risk_radar(exposures, concentration, volatility)
 
-    return {
-        "exposures": exposures,
-        "concentration": concentration,
-        "risk_radar": radar,
-    }
+    return {"exposures": exposures}
 
 
 @router.post("/explain")

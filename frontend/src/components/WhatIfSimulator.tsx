@@ -99,7 +99,7 @@ export function WhatIfSimulator({
   const newGain = newFinal !== undefined ? ((newFinal - 1) * 100).toFixed(1) : null
 
   return (
-    <div className="bg-zinc-900/80 border border-white/[0.08] rounded-xl p-6 mb-4">
+    <div className="bg-zinc-900 rounded-2xl p-6 mb-4">
       <h2 className="text-lg font-semibold text-white mb-1">Scenariosimulator</h2>
       <p className="text-zinc-500 text-xs mb-5">
         Justera vikter och jämför mot ursprunglig fördelning

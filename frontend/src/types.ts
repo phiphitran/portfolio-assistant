@@ -8,18 +8,8 @@ export interface Exposures {
   country_exposure: Record<string, number>
 }
 
-export interface RiskRadar {
-  tech_exposure: number
-  us_exposure: number
-  concentration: number
-  sector_diversity: number
-  volatility: number
-}
-
 export interface AnalyzeResult {
   exposures: Exposures
-  concentration: number
-  risk_radar: RiskRadar
 }
 
 export interface PerformancePoint {
