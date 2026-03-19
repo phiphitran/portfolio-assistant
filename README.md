@@ -1,4 +1,4 @@
-# SAVR Portfolio Copilot
+# Portfolio Copilot
 
 > An AI-powered portfolio analysis tool built as a concept feature for SAVR.
 > Helps users understand the risk and composition of their portfolio.
